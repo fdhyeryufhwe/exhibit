@@ -1,0 +1,542 @@
+﻿body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #e8f0f8; /* A very light blue-grey for a fresh modern feel */
+    background-image: radial-gradient(circle at 1px 1px, rgba(0,0,0,0.05) 1px, transparent 0); /* Subtle dot pattern */
+    background-size: 20px 20px;
+    color: #333;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #3f51b5; /* Deep blue */
+    color: white;
+    padding: 1.5rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+}
+
+main {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 20px auto;
+}
+
+.search-container {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #e0e6f6; /* Light blue background */
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.search-container p {
+    margin-bottom: 10px;
+    font-size: 1.1rem;
+    color: #3f51b5;
+}
+
+#searchInput {
+    width: 80%;
+    max-width: 400px;
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    outline: none;
+    transition: border-color 0.2s ease-in-out;
+}
+
+#searchInput:focus {
+    border-color: #3f51b5;
+}
+
+#gallery {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding: 10px;
+}
+
+.photo-card {
+    background-color: #ffffff; /* Keep card background white */
+    border-radius: 15px; /* More rounded corners */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Softer, more pronounced shadow */
+    transition: all 0.3s ease-in-out; /* Smoother transitions */
+    overflow: hidden; /* Ensure content stays within borders */
+    border: none; /* Remove explicit border, rely on shadow */
+    display: flex;
+    flex-direction: column;
+}
+
+.photo-card:hover {
+    transform: translateY(-10px) scale(1.02); /* More noticeable hover effect */
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.25); /* Enhanced shadow on hover */
+}
+
+.photo-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    display: block;
+}
+
+.card-content {
+    background-color: #f8fcfd; /* Very light, almost white background for info area */
+    /* Light dark-patterned wallpaper simulation (subtle cross-hatch) */
+    background-image: linear-gradient(45deg, rgba(0,0,0,.04) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.04) 75%, rgba(0,0,0,.04)),
+                      linear-gradient(45deg, rgba(0,0,0,.04) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.04) 75%, rgba(0,0,0,.04));
+    background-size: 25px 25px; /* Size of the pattern */
+    background-position: 0 0, 12.5px 12.5px; /* Offset the second pattern for a grid effect */
+    padding: 20px; /* More padding */
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.card-content h3 {
+    color: #2c3e50; /* Darker, modern heading color */
+    font-size: 1.4em; /* Slightly larger heading */
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.card-content p {
+    font-size: 1em; /* Slightly larger text */
+    color: #555;
+}
+
+.card-content p strong {
+    color: #000;
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 40px;
+    font-size: 0.9rem;
+}
+
+#mainTitle {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #FF6B6B, #FFE66B, #6BFF8B, #6B8BFF, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 400% 400%;
+    animation: gradientShift 10s ease infinite;
+    display: inline-block; /* Essential for background-clip to work */
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    25% { background-position: 50% 100%; }
+    50% { background-position: 100% 50%; }
+    75% { background-position: 50% 0%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Modal (Warning Box) Styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+}
+
+.modal-content {
+    background-color: #ffffff;
+    margin: auto; /* For older browsers, flexbox handles centering */
+    padding: 25px;
+    border: 1px solid #888;
+    border-radius: 10px;
+    width: 80%; /* Could be more or less, depending on screen size */
+    max-width: 600px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: center;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.modal-title {
+    color: red; /* Make '特别提示' red */
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.modal-content p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    margin-bottom: 10px;
+    color: #555;
+    text-align: left;
+}
+
+.close-button {
+    background-color: #3f51b5;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: #303f9f;
+}
+
+/* Image Lightbox Modal Specific Styles */
+#imageModal.modal {
+    /* Reusing .modal base styles, just ensuring it's hidden by default and flex for centering */
+    display: none; /* Hidden by default */
+    background-color: rgba(0,0,0,0.9); /* Darker overlay for images */
+    /* Inherits flex properties for centering from .modal */
+}
+
+#imageModal .modal-content {
+    margin: auto; /* Center the image within the modal */
+    display: block; /* Make it a block element to control width */
+    max-width: 90%; /* Max width of the image */
+    max-height: 90vh; /* Max height of the image (90% of viewport height) */
+    object-fit: contain; /* Ensure the entire image is visible, scale down if necessary */
+    animation: zoomIn 0.6s; /* Animation for image appearance */
+}
+
+@keyframes zoomIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+#imageModal #caption {
+    margin-top: 15px;
+    display: block;
+    color: #ccc;
+    font-size: 17px;
+    padding: 10px 0;
+    text-align: center;
+}
+
+#imageModal .close-button {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    background: none; /* Remove background from the generic close-button style */
+    border: none; /* Remove border */
+    padding: 0; /* Remove padding */
+    cursor: pointer;
+}
+
+#imageModal .close-button:hover,
+#imageModal .close-button:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gallery-container {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    }
+
+    header h1 {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .gallery-container {
+        grid-template-columns: 1fr;
+    }
+
+    main {
+        padding: 10px;
+    }
+
+    .photo-card img {
+        height: 200px;
+    }
+}
+
+/* Pagination Styles */
+.pagination-container {
+    text-align: center;
+    margin-top: 30px;
+    padding: 10px 0;
+    background-color: #f4f7f6; /* Light background for pagination */
+    border-radius: 8px;
+}
+
+.pagination-container button {
+    background-color: #3f51b5;
+    color: white;
+    border: 1px solid #3f51b5;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.pagination-container button:hover:not(.active):not(:disabled) {
+    background-color: #303f9f;
+    border-color: #303f9f;
+}
+
+.pagination-container button.active {
+    background-color: #5c6bc0; /* Slightly lighter blue for active */
+    border-color: #5c6bc0;
+    cursor: default;
+}
+
+.pagination-container button:disabled {
+    background-color: #cccccc;
+    border-color: #cccccc;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+.pagination-container button.disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+/* Key Entry Modal Styles */
+#key-entry-modal {
+    display: flex; /* Use flexbox for centering */
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.8); /* Black w/ opacity */
+}
+
+#key-entry-modal .modal-content {
+    background-color: #fefefe;
+    margin: auto; /* Removed to use flexbox centering */
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%; /* Could be more specific */
+    max-width: 500px; /* Max width for larger screens */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+    text-align: center;
+}
+
+#key-entry-modal h2 {
+    color: #333;
+    margin-bottom: 20px;
+}
+
+#keyInput {
+    width: calc(100% - 20px); /* Account for padding */
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+#submitKeyButton {
+    background-color: #007bff;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+#submitKeyButton:hover {
+    background-color: #0056b3;
+}
+
+#keyMessage {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+/* Main website title styles */
+.main-website-title {
+    font-family: 'Georgia', serif; /* A more elegant, readable serif font, or a modern sans-serif like 'Roboto', 'Open Sans' */
+    font-size: 3.8em; /* Significantly larger */
+    letter-spacing: -0.5px; /* Tighter letter spacing */
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.25); /* More prominent shadow */
+    /* Keep existing gradient colors but maybe adjust for vibrancy */
+    background-image: linear-gradient(to right, #4CAF50, #8BC34A, #FFEB3B); /* More vibrant green-yellow gradient */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent; /* Fallback */
+    padding: 10px 0; /* Add some padding */
+}
+
+/* Search section styling for centering */
+.search-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+}
+
+.search-section input[type="text"] {
+    flex-grow: 1;
+    max-width: 400px; /* Limit width */
+    padding: 10px;
+    border: 1px solid #e0e0e0; /* Lighter border */
+    border-radius: 10px; /* More rounded */
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.08); /* Inner shadow for depth */
+    margin-right: 10px; /* Space between input and buttons */
+    font-size: 1em;
+}
+
+.search-section button {
+    padding: 12px 20px;
+    background-color: #007bff; /* A vibrant blue */
+    color: white;
+    border: none;
+    border-radius: 10px; /* More rounded */
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15); /* More subtle shadow */
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 10px; /* For wrap on small screens */
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.search-section button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+    transform: translateY(-2px); /* Slight lift */
+}
+
+/* --- NEW MODERN DESIGN STYLES --- */
+
+/* Adjust search section for modern feel */
+.search-section {
+    background-color: #ffffff; /* Clean white background */
+    border-radius: 12px; /* More rounded */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.08); /* Softer shadow */
+    padding: 20px 25px; /* More padding */
+    margin-bottom: 30px;
+    max-width: 700px; /* Limit width for better visual balance */
+    margin-left: auto; /* Center the search section */
+    margin-right: auto; /* Center the search section */
+}
+
+/* Ensure container class is used correctly */
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.gallery {
+    padding: 0; /* Remove padding from gallery as cards handle it now */
+}
+
+/* Adjust modal content for consistency */
+.modal-content {
+    background-color: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+.modal-title {
+    color: #e74c3c; /* A strong red for warnings */
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.close-button {
+    background-color: #3498db; /* A friendly blue */
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.close-button:hover {
+    background-color: #2980b9;
+}
+
+#imageModal .close-button {
+    color: #ffffff;
+    background: none; /* Keep specific override */
+    box-shadow: none; /* Remove shadow for this one */
+}
+
+#imageModal .close-button:hover, #imageModal .close-button:focus {
+    color: #eeeeee;
+}
+
+#imageModal .modal-content-img {
+    display: block;
+    margin: 0 auto;
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+}
+
+#imageModal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.92);
+    align-items: center;
+    justify-content: center;
+}
+
+#imageModal .close-button {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    background: none;
+    border: none;
+    cursor: pointer;
+    z-index: 1010;
+}
